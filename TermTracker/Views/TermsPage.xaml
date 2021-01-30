@@ -7,11 +7,7 @@
         <StackLayout>
             <Label 
                 Text="WGU Term Tracker" 
-                VerticalTextAlignment="Center" 
-                HorizontalTextAlignment="Center" 
-                TextColor="White" 
-                FontSize="Title"
-                FontAttributes="Bold"
+                Style="{StaticResource pageTitle}"
              />
         </StackLayout>
     </NavigationPage.TitleView>
@@ -19,12 +15,22 @@
         <ToolbarItem Text="Add"/>
     </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
-        <CollectionView x:Name="TermsCollection">
-            <!--<CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Title}}"/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>-->
-        </CollectionView>
+        <StackLayout>
+            <CollectionView x:Name="TermsCollection" ItemsSource="{Binding Terms}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Button 
+                                Text="{Binding Title}"
+                                Style="{StaticResource listItem}"
+                            />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <StackLayout VerticalOptions="End">
+                <Button Text="Add Term"/>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

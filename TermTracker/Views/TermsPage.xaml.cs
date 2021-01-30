@@ -18,11 +18,13 @@ namespace TermTracker.Views
         public TermsPage()
         {
             InitializeComponent();
-            TermsCollection.ItemsSource = terms;
+            //TermsCollection.ItemsSource = Terms;
 
-            terms.Add(new Term{ Title = "Term 1" });
-            terms.Add(new Term{ Title = "Term 2" });
-            terms.Add(new Term{ Title = "Term 3" });
+            terms.Add(new Term{ Id = 1, Title = "Term 1" });
+            terms.Add(new Term{ Id = 2, Title = "Term 2" });
+            terms.Add(new Term{ Id = 3, Title = "Term 3" });
+
+            BindingContext = this;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace TermTracker.Models
 {
     public class Term
     {
+        public int Id { get; set; }
         public String Title { get; set; }
     }
 }
