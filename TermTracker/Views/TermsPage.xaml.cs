@@ -19,10 +19,10 @@ namespace TermTracker.Views
         {
             InitializeComponent();
             //TermsCollection.ItemsSource = Terms;
-
-            terms.Add(new Term{ Id = 1, Title = "Term 1" });
-            terms.Add(new Term{ Id = 2, Title = "Term 2" });
-            terms.Add(new Term{ Id = 3, Title = "Term 3" });
+            var thisMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            terms.Add(new Term(1, "Term 1", thisMonth, thisMonth.AddMonths(4).AddDays(-1)));
+            terms.Add(new Term(2, "Term 2", thisMonth.AddMonths(4), thisMonth.AddMonths(8).AddDays(-1)));
+            terms.Add(new Term(3, "Term 3", thisMonth.AddMonths(8), thisMonth.AddMonths(12).AddDays(-1)));
 
             BindingContext = this;
         }
