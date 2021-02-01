@@ -31,5 +31,10 @@ namespace TermTracker.Views
             database.Initialize();
             return database.GetAllTerms();
         }
+
+        private async void AddTerm_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new TermConstructPage());
+        }
     }
 }

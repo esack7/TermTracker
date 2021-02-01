@@ -29,7 +29,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <StackLayout VerticalOptions="End">
-                <Button Text="Add Term"/>
+                <Button Text="Add Term" Clicked="AddTerm_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
