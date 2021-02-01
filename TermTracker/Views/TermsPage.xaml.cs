@@ -16,7 +16,6 @@ namespace TermTracker.Views
     {
         ObservableCollection<Term> terms = new ObservableCollection<Term>();
         public ObservableCollection<Term> Terms { get { return terms; } }
-        private SqliteDataService database = new SqliteDataService();
         public TermsPage()
         {
             InitializeComponent();
@@ -28,6 +27,7 @@ namespace TermTracker.Views
 
         private List<Term> GetData()
         {
+            var database = new SqliteDataService();
             database.Initialize();
             return database.GetAllTerms();
         }
