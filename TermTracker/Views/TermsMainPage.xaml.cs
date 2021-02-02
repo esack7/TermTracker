@@ -12,17 +12,26 @@ using Xamarin.Forms.Xaml;
 namespace TermTracker.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TermsPage : ContentPage
+    public partial class TermsMainPage : ContentPage
     {
         ObservableCollection<Term> terms = new ObservableCollection<Term>();
         public ObservableCollection<Term> Terms { get { return terms; } }
-        public TermsPage()
+        public TermsMainPage()
         {
             InitializeComponent();
+            updateData();
+            BindingContext = this;
+        }
+
+        public void addToTermsList(Term term)
+        {
+            Terms.Add(term);
+        }
+
+        private void updateData()
+        {
             var data = GetData();
             terms = new ObservableCollection<Term>(data);
-
-            BindingContext = this;
         }
 
         private List<Term> GetData()
@@ -30,6 +39,11 @@ namespace TermTracker.Views
             var database = new SqliteDataService();
             database.Initialize();
             return database.GetAllTerms();
+        }
+
+        private async void AddTerm_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new TermConstructPage(this));
         }
     }
 }
