@@ -14,7 +14,7 @@ namespace TermTracker
             InitializeData();
             InitializeComponent();
 
-            MainPage = new NavigationPage(new TermsPage())
+            MainPage = new NavigationPage(new TermsMainPage())
             {
                 BarBackgroundColor = Color.FromHex("#002F51")
             };

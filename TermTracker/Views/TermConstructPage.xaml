@@ -11,15 +11,15 @@
                     Style="{StaticResource modalTitle}"
                  />
             </StackLayout>
-            <Entry Placeholder="Term Title" />
+            <Entry Placeholder="Term Title" x:Name="termTitle"/>
             <!--<local:CustomStartDatePicker />
             <local:CustomEndDatePicker />-->
             <Label Text="Start Date"/>
             <DatePicker x:Name="startDateSelected"/>
             <Label Text="End Date"/>
             <DatePicker x:Name="endDateSelected"/>
-            <StackLayout VerticalOptions="End">
-                <Button Text="Save"/>
+            <StackLayout>
+                <Button Text="Save" Clicked="SaveButton_Clicked"/>
                 <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
             </StackLayout>
         </StackLayout>
