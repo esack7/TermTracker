@@ -45,5 +45,12 @@ namespace TermTracker.Views
         {
             await Navigation.PushModalAsync(new TermConstructPage(this));
         }
+
+        private async void Term_Clicked(object sender, EventArgs e)
+        {
+            var layout = (BindableObject)sender;
+            var term = (Term)layout.BindingContext;
+            await Navigation.PushAsync(new TermPage(term));
+        }
     }
 }

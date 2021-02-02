@@ -5,22 +5,38 @@
     <Application.Resources>
         <ResourceDictionary>
             <Style x:Key="listItem" TargetType="Button">
-                <Setter Property="HorizontalOptions" Value="Center" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="BorderColor" Value="Black"/>
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="Margin" Value="7, 7, 7, 0"/>
-                <Setter Property="WidthRequest" Value="400"/>
                 <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            <Style x:Key="regularButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="LightGray"/>
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderColor" Value="White"/>
+            </Style>
+            <Style x:Key="deleteButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Red"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderColor" Value="White"/>
             </Style>
             <Style x:Key="pageTitle" TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="Title"/>
-                <Setter Property="FontAttributes" Value="Bold"/>                
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style x:Key="navPageTitle" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="Title"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="0, 0, 75, 0"/>
             </Style>
             <Style x:Key="modalTitle" TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
@@ -30,6 +46,11 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="BackgroundColor" Value="#002F51"/>
                 <Setter Property="Padding" Value="10"/>
+            </Style>
+            <Style x:Key="termDateRange" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Margin" Value="10"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
