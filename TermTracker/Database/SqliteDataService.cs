@@ -38,6 +38,11 @@ namespace TermTracker.Database
             return database.Table<Term>().ToList();
         }
 
+        public int UpdateTerm(Term term)
+        {
+            return database.Update(term);
+        }
+
         public int DeleteTerm(Term term)
         {
             return database.Delete(term);

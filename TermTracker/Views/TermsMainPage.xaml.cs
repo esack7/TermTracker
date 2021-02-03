@@ -15,7 +15,7 @@ namespace TermTracker.Views
     public partial class TermsMainPage : ContentPage
     {
         ObservableCollection<Term> terms = new ObservableCollection<Term>();
-        public ObservableCollection<Term> Terms { get { return terms; } }
+        public ObservableCollection<Term> Terms { get { return terms; } set { } }
         public TermsMainPage()
         {
             InitializeComponent();
@@ -26,6 +26,18 @@ namespace TermTracker.Views
         public void addToTermsList(Term term)
         {
             Terms.Add(term);
+        }
+
+        public void updateTermInTermList(Term term, Term newTerm)
+        {
+            var termList = Terms.ToList();
+            int indexFound = termList.IndexOf(term);
+            termList.RemoveAt(indexFound);
+            termList.Insert(indexFound, newTerm);
+            Terms = new ObservableCollection<Term>(termList);
+            var last = Terms[Terms.Count - 1];
+            Terms.Remove(last);
+            Terms.Add(last);
         }
 
         public void deleteFromTermsList(Term term)

@@ -5,7 +5,7 @@
     <NavigationPage.TitleView>
         <StackLayout>
             <Label 
-                Text="{Binding SelectedTerm.Title}" 
+                x:Name="navTitle"
                 Style="{StaticResource navPageTitle}"
              />
         </StackLayout>

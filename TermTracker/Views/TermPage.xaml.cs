@@ -28,8 +28,15 @@ namespace TermTracker.Views
             BindingContext = this;
         }
 
+        public void UpdateData(string Title, DateTime start, DateTime end)
+        {
+            navTitle.Text = Title;
+            TermDateRange.Text = $"{start.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {end.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
+        }
+
         private void setData()
         {
+            navTitle.Text = SelectedTerm.Title;
             TermDateRange.Text = $"{SelectedTerm.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {SelectedTerm.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
             courses = getCoursesFromDb(SelectedTerm.Id);
         }
@@ -47,9 +54,9 @@ namespace TermTracker.Views
 
         }
 
-        private void EditTerm_Clicked(object sender, EventArgs e)
+        private async void EditTerm_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new TermConstructPage(MainPage, this));
         }
 
         private async void DeleteTerm_Clicked(object sender, EventArgs e)

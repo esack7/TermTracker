@@ -9,6 +9,7 @@ namespace TermTracker.Database
         bool Initialize();
         void AddTerm(Term term);
         List<Term> GetAllTerms();
+        int UpdateTerm(Term term);
         int DeleteTerm(Term term);
         void AddCourse(Course course);
         List<Course> GetCourseByTermId(int termId);
