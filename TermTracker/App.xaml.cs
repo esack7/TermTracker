@@ -31,6 +31,19 @@ namespace TermTracker
                 db.AddTerm(new Term { Title = "Term 1", StartDate = thisMonth, EndDate = thisMonth.AddMonths(4).AddDays(-1) });
                 db.AddTerm(new Term { Title = "Term 2", StartDate = thisMonth.AddMonths(4), EndDate = thisMonth.AddMonths(8).AddDays(-1) });
                 db.AddTerm(new Term { Title = "Term 3", StartDate = thisMonth.AddMonths(8), EndDate = thisMonth.AddMonths(12).AddDays(-1) });
+                db.AddCourse(new Course
+                {
+                    TermId = 1,
+                    Title = "Sample Course",
+                    StartDate = thisMonth,
+                    EndDate = thisMonth.AddMonths(1).AddDays(-1),
+                    Status = "Fake",
+                    InstructorName = "Bob Roberts",
+                    InstructorPhone = "5557399999",
+                    InstructorEmail = "bobby.bob@wgu.edu",
+                    Notes = "This is only a Test",
+                    EnableNotifications = true
+                });
             }
         }
 

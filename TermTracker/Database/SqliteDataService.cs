@@ -11,13 +11,21 @@ namespace TermTracker.Database
         private SQLiteConnection database;
         public bool Initialize()
         {
+            bool dbTablesCreated = false;
             if (database == null)
             {
                 string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TermTrackerDb.db3");
                 database = new SQLiteConnection(dbPath);
             }
 
-            return database.CreateTable<Term>() == CreateTableResult.Created || database.CreateTable<Course>() == CreateTableResult.Created || database.CreateTable<Assessment>() == CreateTableResult.Created;
+            var create = database.CreateTables<Term, Course, Assessment>();
+
+            foreach (var result in create.Results)
+            {
+                dbTablesCreated = dbTablesCreated || result.Value == CreateTableResult.Created;
+            }
+
+            return dbTablesCreated;
         }
 
         public void AddTerm(Term term)
@@ -37,7 +45,7 @@ namespace TermTracker.Database
 
         public List<Course> GetCourseByTermId(int termId)
         {
-            string query = $"SELECT * FROM course WHERE course.TermId = ${termId}";
+            string query = $"SELECT * FROM course WHERE course.TermId={termId}";
             return database.Query<Course>(query);
         }
     }
