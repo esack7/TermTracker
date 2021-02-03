@@ -28,6 +28,11 @@ namespace TermTracker.Views
             Terms.Add(term);
         }
 
+        public void deleteFromTermsList(Term term)
+        {
+            Terms.Remove(term);
+        }
+
         private void updateData()
         {
             var data = GetData();
@@ -50,7 +55,7 @@ namespace TermTracker.Views
         {
             var layout = (BindableObject)sender;
             var term = (Term)layout.BindingContext;
-            await Navigation.PushAsync(new TermPage(term));
+            await Navigation.PushAsync(new TermPage(term, this));
         }
     }
 }

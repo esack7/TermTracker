@@ -16,12 +16,14 @@ namespace TermTracker.Views
     public partial class TermPage : ContentPage
     {
         private ObservableCollection<Course> courses = new ObservableCollection<Course>();
+        private TermsMainPage MainPage;
         public ObservableCollection<Course> Courses { get { return courses; } }
         public Term SelectedTerm { get; set; }
-        public TermPage(Term term)
+        public TermPage(Term term, TermsMainPage mainPage)
         {
             InitializeComponent();
             SelectedTerm = term;
+            MainPage = mainPage;
             setData();
             BindingContext = this;
         }
@@ -50,9 +52,13 @@ namespace TermTracker.Views
 
         }
 
-        private void DeleteTerm_Clicked(object sender, EventArgs e)
+        private async void DeleteTerm_Clicked(object sender, EventArgs e)
         {
-
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.DeleteTerm(SelectedTerm);
+            MainPage.deleteFromTermsList(SelectedTerm);
+            await Navigation.PopAsync();
         }
     }
 }
