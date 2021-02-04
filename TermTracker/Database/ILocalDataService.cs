@@ -7,11 +7,12 @@ namespace TermTracker.Database
     public interface ILocalDataService
     {
         bool Initialize();
+        void Close();
         void AddTerm(Term term);
         List<Term> GetAllTerms();
         int UpdateTerm(Term term);
         int DeleteTerm(Term term);
         void AddCourse(Course course);
-        List<Course> GetCourseByTermId(int termId);
+        List<Course> GetCoursesByTermId(int termId);
     }
 }

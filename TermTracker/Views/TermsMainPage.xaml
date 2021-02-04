@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:globals="clr-namespace:TermTracker"
              x:Class="TermTracker.Views.TermsMainPage">
 
     <NavigationPage.TitleView>
@@ -16,7 +17,7 @@
             <ListView 
                 x:Name="TermsList" 
                 HasUnevenRows="True" 
-                ItemsSource="{Binding Terms}"
+                ItemsSource="{Binding Source= {x:Static globals:Globals.Terms}}"
             >
                 <ListView.ItemTemplate>
                     <DataTemplate>

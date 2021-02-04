@@ -53,10 +53,15 @@ namespace TermTracker.Database
             database.Insert(course);
         }
 
-        public List<Course> GetCourseByTermId(int termId)
+        public List<Course> GetCoursesByTermId(int termId)
         {
             string query = $"SELECT * FROM course WHERE course.TermId={termId}";
             return database.Query<Course>(query);
+        }
+
+        public void Close()
+        {
+            database.Close();
         }
     }
 }
