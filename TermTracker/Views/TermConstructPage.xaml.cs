@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TermTracker.Database;
 using TermTracker.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,20 +8,36 @@ namespace TermTracker.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TermConstructPage : ContentPage
     {
-        private TermsMainPage MainPage;
-        public TermConstructPage(TermsMainPage mainPage)
+        private TermPage TermPage;
+        public TermConstructPage()
         {
             InitializeComponent();
-            MainPage = mainPage;
+            SaveEditButton.IsVisible = false;
+        }
+
+        public TermConstructPage(TermPage termPage)
+        {
+            InitializeComponent();
+            TermPage = termPage;
+            termTitle.Text = termPage.SelectedTerm.Title;
+            startDateSelected.Date = termPage.SelectedTerm.StartDate;
+            endDateSelected.Date = termPage.SelectedTerm.EndDate;
+            SaveButton.IsVisible = false;
         }
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            var db = new SqliteDataService();
-            db.Initialize();
-            var newTerm = new Term { Title = $"{termTitle.Text}", StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
-            db.AddTerm(newTerm);
-            MainPage.addToTermsList(newTerm);
+            var newTerm = new Term { Title = termTitle.Text, StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
+            Globals.addTermToTermCollection(newTerm);
+            await Navigation.PopModalAsync();
+        }
+
+        private async void SaveEditButton_Clicked(object sender, EventArgs e)
+        {
+            var termPage = TermPage;
+            termPage.UpdateData(termTitle.Text, startDateSelected.Date, endDateSelected.Date);
+            var newTerm = new Term { Id = termPage.SelectedTerm.Id, Title = termTitle.Text, StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
+            Globals.updateTermInTermCollection(termPage.SelectedTerm, newTerm);
             await Navigation.PopModalAsync();
         }
 

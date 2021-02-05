@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:globals="clr-namespace:TermTracker"
              x:Class="TermTracker.Views.TermsMainPage">
 
     <NavigationPage.TitleView>
@@ -11,19 +12,21 @@
              />
         </StackLayout>
     </NavigationPage.TitleView>
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add"/>
-    </ContentPage.ToolbarItems>-->
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="TermsList" HasUnevenRows="True" ItemsSource="{Binding Terms}">
+            <ListView 
+                x:Name="TermsList" 
+                HasUnevenRows="True" 
+                ItemsSource="{Binding Source= {x:Static globals:Globals.Terms}}"
+            >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell >
+                        <ViewCell ClassId="{Binding Id}">
                             <StackLayout>
                                 <Button 
                                     Text="{Binding Title}"
                                     Style="{StaticResource listItem}"
+                                    Clicked="Term_Clicked"
                                 />
                             </StackLayout>
                         </ViewCell>
@@ -31,7 +34,11 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout VerticalOptions="End">
-                <Button Text="Add Term" Clicked="AddTerm_Clicked"/>
+                <Button
+                    Text="Add Term"
+                    Style="{StaticResource regularButton}"
+                    Clicked="AddTerm_Clicked"
+                />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

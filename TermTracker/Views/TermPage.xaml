@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:globals="clr-namespace:TermTracker"
+             x:Class="TermTracker.Views.TermPage">
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label 
+                x:Name="navTitle"
+                Style="{StaticResource navPageTitle}"
+             />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label 
+                    x:Name="TermDateRange"
+                    Style="{StaticResource termDateRange}"
+                 />
+            </StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ListView
+                    x:Name="CoursesList"
+                    HasUnevenRows="True" 
+                    ItemsSource="{Binding Source= {x:Static globals:Globals.Courses}}"
+                >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Button
+                                        Text="{Binding Title}"
+                                        Style="{StaticResource listItem}"
+                                    />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout VerticalOptions="End">
+                <Button 
+                    Text="Add Course"
+                    Style="{StaticResource regularButton}"
+                    Clicked="AddCourse_Clicked"
+                />
+                <Button 
+                    Text="Edit Term"
+                    Style="{StaticResource regularButton}"
+                    Clicked="EditTerm_Clicked"
+                />
+                <Button 
+                    Text="Delete Term"
+                    Style="{StaticResource deleteButton}"
+                    Clicked="DeleteTerm_Clicked"
+                />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
