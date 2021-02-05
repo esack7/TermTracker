@@ -35,7 +35,7 @@ namespace TermTracker
         public static void updateTermInTermCollection(Term oldTerm, Term newTerm)
         {
             var termList = Terms.ToList();
-            Terms = new ObservableCollection<Term>();
+            Terms.Clear();
 
             var database = new SqliteDataService();
             database.Initialize();
