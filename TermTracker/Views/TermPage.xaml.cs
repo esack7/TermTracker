@@ -15,19 +15,13 @@ namespace TermTracker.Views
             Globals.initializeCoursesCollection(term.Id);
             InitializeComponent();
             SelectedTerm = term;
-            setData();
+            SetData(term);
         }
 
-        public void UpdateData(string Title, DateTime start, DateTime end)
+        public void SetData(Term term)
         {
-            navTitle.Text = Title;
-            TermDateRange.Text = $"{start.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {end.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
-        }
-
-        private void setData()
-        {
-            navTitle.Text = SelectedTerm.Title;
-            TermDateRange.Text = $"{SelectedTerm.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {SelectedTerm.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
+            navTitle.Text = term.Title;
+            TermDateRange.Text = $"{term.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {term.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
         }
 
         private async void AddCourse_Clicked(object sender, EventArgs e)
@@ -44,6 +38,13 @@ namespace TermTracker.Views
         {
             Globals.deleteTermFromTermCollection(SelectedTerm);
             await Navigation.PopAsync();
+        }
+
+        private async void Course_Clicked(object sender, EventArgs e)
+        {
+            var layout = (BindableObject)sender;
+            var course = (Course)layout.BindingContext;
+            await Navigation.PushAsync(new CoursePage(course));
         }
     }
 }
