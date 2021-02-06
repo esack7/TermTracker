@@ -67,5 +67,14 @@ namespace TermTracker
             courses.ForEach(course => Courses.Add(course));
             database.Close();
         }
+
+        public static void addCourseToCourseCollection(Course course)
+        {
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.AddCourse(course);
+            Courses.Add(course);
+            database.Close();
+        }
     }
 }
