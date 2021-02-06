@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TermTracker.Views.CourseConstructPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label 
+                    Text="Course" 
+                    Style="{StaticResource modalTitle}"
+                 />
+            </StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand">
+                
+            </StackLayout>
+            <StackLayout VerticalOptions="End">
+                <Button 
+                    x:Name="SaveButton" 
+                    Style="{StaticResource regularButton}"
+                    Text="Save" 
+                    Clicked="SaveButton_Clicked"
+                />
+                <Button 
+                    x:Name="SaveEditButton" 
+                    Style="{StaticResource regularButton}"
+                    Text="Save" 
+                    Clicked="SaveEditButton_Clicked"
+                />
+                <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
