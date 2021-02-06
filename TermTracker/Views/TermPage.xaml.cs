@@ -30,9 +30,9 @@ namespace TermTracker.Views
             TermDateRange.Text = $"{SelectedTerm.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {SelectedTerm.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
         }
 
-        private void AddCourse_Clicked(object sender, EventArgs e)
+        private async void AddCourse_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new CourseConstructPage(SelectedTerm.Id));
         }
 
         private async void EditTerm_Clicked(object sender, EventArgs e)

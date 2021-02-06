@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TermTracker.Views.CourseConstructPage">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout>
+                <StackLayout>
+                    <Label 
+                        Text="Course" 
+                        Style="{StaticResource modalTitle}"
+                     />
+                </StackLayout>
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <Entry Placeholder="Course Title" x:Name="courseTitle"/>
+                    <Label Text="Start Date"/>
+                    <DatePicker x:Name="startDateSelected"/>
+                    <Label Text="End Date"/>
+                    <DatePicker x:Name="endDateSelected"/>
+                    <Picker Title="Status" x:Name="statusPicker">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>In Progress</x:String>
+                                <x:String>Completed</x:String>
+                                <x:String>Dropped</x:String>
+                                <x:String>Plan To Take</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Label Text="Instructor's Info:"/>
+                    <Entry Placeholder="Name" x:Name="instructorName"/>
+                    <Entry Placeholder="Phone" x:Name="instructorPhone"/>
+                    <Entry Placeholder="Email" x:Name="instructorEmail"/>
+                    <Editor Placeholder="Notes" x:Name="courseNotes" AutoSize="TextChanges" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Enable Notifications" HorizontalOptions="CenterAndExpand"/>
+                        <Switch 
+                            x:Name="notificationSwitch"
+                            HorizontalOptions="EndAndExpand" 
+                            Scale="1.2"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout VerticalOptions="End">
+                    <Button 
+                        x:Name="SaveButton" 
+                        Style="{StaticResource regularButton}"
+                        Text="Save" 
+                        Clicked="SaveButton_Clicked"
+                    />
+                    <Button 
+                        x:Name="SaveEditButton" 
+                        Style="{StaticResource regularButton}"
+                        Text="Save" 
+                        Clicked="SaveEditButton_Clicked"
+                    />
+                    <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
