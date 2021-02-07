@@ -26,5 +26,25 @@ namespace TermTracker.Views
             navTitle.Text = course.Title;
             CourseDateRange.Text = $"{course.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {course.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
         }
+
+        private async void ShareNotes_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void CourseAssessments_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void EditCourse_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void DeleteCourse_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

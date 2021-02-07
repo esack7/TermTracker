@@ -16,7 +16,7 @@
             <StackLayout>
                 <Label 
                     x:Name="TermDateRange"
-                    Style="{StaticResource termDateRange}"
+                    Style="{StaticResource dateRange}"
                  />
             </StackLayout>
             <StackLayout VerticalOptions="StartAndExpand">
