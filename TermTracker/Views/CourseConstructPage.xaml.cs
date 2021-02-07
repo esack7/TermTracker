@@ -33,7 +33,7 @@ namespace TermTracker.Views
                 InstructorPhone = instructorPhone.Text,
                 InstructorEmail = instructorEmail.Text,
                 Notes = courseNotes.Text,
-                EnableNotifications = notificationSwitch.IsEnabled
+                EnableNotifications = notificationSwitch.IsToggled
             };
             Globals.addCourseToCourseCollection(newCourse);
             await Navigation.PopModalAsync();

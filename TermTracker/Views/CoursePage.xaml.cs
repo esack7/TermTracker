@@ -25,6 +25,12 @@ namespace TermTracker.Views
         {
             navTitle.Text = course.Title;
             CourseDateRange.Text = $"{course.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {course.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
+            statusSelection.Text = course.Status;
+            instructorsName.Text = course.InstructorName;
+            instructorsPhone.Text = course.InstructorPhone;
+            instructorsEmail.Text = course.InstructorEmail;
+            notes.Text = course.Notes;
+            notificationsEnabled.Text = course.EnableNotifications ? "ON" : "OFF";
         }
 
         private async void ShareNotes_Clicked(object sender, EventArgs e)
@@ -44,7 +50,8 @@ namespace TermTracker.Views
 
         private async void DeleteCourse_Clicked(object sender, EventArgs e)
         {
-
+            Globals.deleteCourseFromCourseCollection(SelectedCourse);
+            await Navigation.PopAsync();
         }
     }
 }

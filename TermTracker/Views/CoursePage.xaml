@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:globals="clr-namespace:TermTracker"
              x:Class="TermTracker.Views.CoursePage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -40,23 +39,23 @@
                      />
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Status" HorizontalOptions="StartAndExpand" Margin="20,0,0,0" FontAttributes="Bold"/>
-                        <Label Text="In Progress"  x:Name="statusSelection" HorizontalOptions="CenterAndExpand"/>
+                        <Label x:Name="statusSelection" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                     <Label Text="Instructor's Info:" HorizontalOptions="Start" Margin="20,0,0,0" FontAttributes="Bold"/>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Name:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
-                        <Label Text="Bob Richards"  x:Name="instructorsName" HorizontalOptions="CenterAndExpand"/>
+                        <Label x:Name="instructorsName" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Phone:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
-                        <Label Text="360-756-8923"  x:Name="instructorsPhone" HorizontalOptions="CenterAndExpand"/>
+                        <Label  x:Name="instructorsPhone" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Email:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
-                        <Label Text="test@test.com"  x:Name="instructorsEmail" HorizontalOptions="CenterAndExpand"/>
+                        <Label x:Name="instructorsEmail" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                     <Label Text="Notes:" Margin="20,0,0,0" FontAttributes="Bold"/>
-                    <Label Text="These are the notes!!!!" x:Name="notes" Margin="20,0,20,0" LineBreakMode="WordWrap"/>
+                    <Label x:Name="notes" Margin="20,0,20,0" LineBreakMode="WordWrap"/>
                     <Button 
                         Text="Share Notes"
                         Style="{StaticResource shareNotesButton}"
@@ -64,11 +63,7 @@
                     />
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Notifications Enabled:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
-                        <Switch 
-                            x:Name="notificationsEnabledSwitch"
-                            HorizontalOptions="CenterAndExpand"
-                            IsEnabled="False"
-                            Scale="1.2"/>
+                        <Label x:Name="notificationsEnabled" HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout VerticalOptions="End">

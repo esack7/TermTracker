@@ -14,5 +14,6 @@ namespace TermTracker.Database
         int DeleteTerm(Term term);
         void AddCourse(Course course);
         List<Course> GetCoursesByTermId(int termId);
+        int DeleteCourse(Course course);
     }
 }

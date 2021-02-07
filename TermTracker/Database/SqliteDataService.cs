@@ -63,5 +63,10 @@ namespace TermTracker.Database
         {
             database.Close();
         }
+
+        public int DeleteCourse(Course course)
+        {
+            return database.Delete(course);
+        }
     }
 }
