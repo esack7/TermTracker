@@ -13,16 +13,16 @@ namespace TermTracker.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CoursePage : ContentPage
     {
-        public Course SelectedCourse;
+        public Course SelectedCourse { get; set; }
         public CoursePage(Course course)
         {
             InitializeComponent();
-            SelectedCourse = course;
             SetData(course);
         }
 
         public void SetData(Course course)
         {
+            SelectedCourse = course;
             navTitle.Text = course.Title;
             CourseDateRange.Text = $"{course.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {course.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
             statusSelection.Text = course.Status;
@@ -45,7 +45,7 @@ namespace TermTracker.Views
 
         private async void EditCourse_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new CourseConstructPage(this));
         }
 
         private async void DeleteCourse_Clicked(object sender, EventArgs e)

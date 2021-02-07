@@ -77,6 +77,23 @@ namespace TermTracker
             database.Close();
         }
 
+        public static void updateCourseInCourseCollection(Course oldCourse, Course newCourse)
+        {
+            var courseList = Courses.ToList();
+            Courses.Clear();
+
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.UpdateCourse(newCourse);
+
+            int indexFound = courseList.IndexOf(oldCourse);
+            courseList.RemoveAt(indexFound);
+            courseList.Insert(indexFound, newCourse);
+            courseList.ForEach(course => Courses.Add(course));
+
+            database.Close();
+        }
+
         public static void deleteCourseFromCourseCollection(Course course)
         {
             var database = new SqliteDataService();
