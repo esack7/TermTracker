@@ -73,5 +73,16 @@ namespace TermTracker.Database
         {
             return database.Delete(course);
         }
+
+        public void AddAssessment(Assessment assessment)
+        {
+            database.Insert(assessment);
+        }
+
+        public List<Assessment> GetAssessmentsByCourseId(int courseId)
+        {
+            string query = $"SELECT * FROM assessment WHERE assessment.CourseId={courseId}";
+            return database.Query<Assessment>(query);
+        }
     }
 }

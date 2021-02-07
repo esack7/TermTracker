@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:globals="clr-namespace:TermTracker"
+             x:Class="TermTracker.Views.AssessmentsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="assessmentNavPageTitle" TargetType="Label" BasedOn="{StaticResource navPageTitle}">
+                <Setter Property="FontSize" Value="Subtitle"/>
+            </Style>
+            <Style x:Key="assessmentListItem" TargetType="Button" BasedOn="{StaticResource listItem}">
+                <Setter Property="FontSize" Value="Small"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label 
+                x:Name="navTitle"
+                Style="{StaticResource assessmentNavPageTitle}"
+             />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ListView
+                    x:Name="AssessmentList"
+                    HasUnevenRows="True" 
+                    ItemsSource="{Binding Source= {x:Static globals:Globals.Assessments}}"
+                >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Button
+                                        Text="{Binding Title}"
+                                        Style="{StaticResource assessmentListItem}"
+                                        Clicked="Assessment_Clicked"
+                                    />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout VerticalOptions="End">
+                <Button 
+                    Text="Add Assessment"
+                    Style="{StaticResource regularButton}"
+                    Clicked="AddAssessment_Clicked"
+                />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
