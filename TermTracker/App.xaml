@@ -47,7 +47,7 @@
                 <Setter Property="BackgroundColor" Value="#002F51"/>
                 <Setter Property="Padding" Value="10"/>
             </Style>
-            <Style x:Key="termDateRange" TargetType="Label">
+            <Style x:Key="dateRange" TargetType="Label">
                 <Setter Property="VerticalOptions" Value="StartAndExpand"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="Margin" Value="10"/>

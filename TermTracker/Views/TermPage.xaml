@@ -16,7 +16,7 @@
             <StackLayout>
                 <Label 
                     x:Name="TermDateRange"
-                    Style="{StaticResource termDateRange}"
+                    Style="{StaticResource dateRange}"
                  />
             </StackLayout>
             <StackLayout VerticalOptions="StartAndExpand">
@@ -32,6 +32,7 @@
                                     <Button
                                         Text="{Binding Title}"
                                         Style="{StaticResource listItem}"
+                                        Clicked="Course_Clicked"
                                     />
                                 </StackLayout>
                             </ViewCell>

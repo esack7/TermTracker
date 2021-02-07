@@ -14,9 +14,9 @@
                 </StackLayout>
                 <StackLayout VerticalOptions="StartAndExpand">
                     <Entry Placeholder="Course Title" x:Name="courseTitle"/>
-                    <Label Text="Start Date"/>
+                    <Label Text="Start Date" Margin="20,0,0,0"/>
                     <DatePicker x:Name="startDateSelected"/>
-                    <Label Text="End Date"/>
+                    <Label Text="End Date" Margin="20,0,0,0"/>
                     <DatePicker x:Name="endDateSelected"/>
                     <Picker Title="Status" x:Name="statusPicker">
                         <Picker.ItemsSource>
@@ -28,16 +28,16 @@
                             </x:Array>
                         </Picker.ItemsSource>
                     </Picker>
-                    <Label Text="Instructor's Info:"/>
+                    <Label Text="Instructor's Info:" Margin="20,0,0,0"/>
                     <Entry Placeholder="Name" x:Name="instructorName"/>
                     <Entry Placeholder="Phone" x:Name="instructorPhone"/>
                     <Entry Placeholder="Email" x:Name="instructorEmail"/>
                     <Editor Placeholder="Notes" x:Name="courseNotes" AutoSize="TextChanges" />
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Enable Notifications" HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,20">
+                        <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
                         <Switch 
                             x:Name="notificationSwitch"
-                            HorizontalOptions="EndAndExpand" 
+                            HorizontalOptions="CenterAndExpand" 
                             Scale="1.2"/>
                     </StackLayout>
                 </StackLayout>

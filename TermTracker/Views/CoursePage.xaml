@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TermTracker.Views.CoursePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="assessmentButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#002F51"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BorderColor" Value="White"/>
+            </Style>
+            <Style x:Key="shareNotesButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#002F51"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="WidthRequest" Value="150"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="Margin" Value="0,20,0,20"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label 
+                x:Name="navTitle"
+                Style="{StaticResource navPageTitle}"
+             />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout>
+                <StackLayout VerticalOptions="StartAndExpand">
+                    <Label 
+                        x:Name="CourseDateRange"
+                        Style="{StaticResource dateRange}"
+                     />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Status" HorizontalOptions="StartAndExpand" Margin="20,0,0,0" FontAttributes="Bold"/>
+                        <Label x:Name="statusSelection" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <Label Text="Instructor's Info:" HorizontalOptions="Start" Margin="20,0,0,0" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Name:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                        <Label x:Name="instructorsName" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Phone:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                        <Label  x:Name="instructorsPhone" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Email:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                        <Label x:Name="instructorsEmail" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <Label Text="Notes:" Margin="20,0,0,0" FontAttributes="Bold"/>
+                    <Label x:Name="notes" Margin="20,0,20,0" LineBreakMode="WordWrap"/>
+                    <Button 
+                        Text="Share Notes"
+                        Style="{StaticResource shareNotesButton}"
+                        Clicked="ShareNotes_Clicked"
+                    />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Notifications Enabled:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                        <Label x:Name="notificationsEnabled" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout VerticalOptions="End">
+                    <Button 
+                        Text="Course Assessments"
+                        Style="{StaticResource assessmentButton}"
+                        Clicked="CourseAssessments_Clicked"
+                    />
+                    <Button 
+                        Text="Edit Course"
+                        Style="{StaticResource regularButton}"
+                        Clicked="EditCourse_Clicked"
+                    />
+                    <Button 
+                        Text="Delete Course"
+                        Style="{StaticResource deleteButton}"
+                        Clicked="DeleteCourse_Clicked"
+                    />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

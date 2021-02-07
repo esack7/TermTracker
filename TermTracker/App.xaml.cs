@@ -37,7 +37,7 @@ namespace TermTracker
                     Title = "Sample Course",
                     StartDate = thisMonth,
                     EndDate = thisMonth.AddMonths(1).AddDays(-1),
-                    Status = "Fake",
+                    Status = "Dropped",
                     InstructorName = "Bob Roberts",
                     InstructorPhone = "5557399999",
                     InstructorEmail = "bobby.bob@wgu.edu",

@@ -35,9 +35,9 @@ namespace TermTracker.Views
         private async void SaveEditButton_Clicked(object sender, EventArgs e)
         {
             var termPage = TermPage;
-            termPage.UpdateData(termTitle.Text, startDateSelected.Date, endDateSelected.Date);
             var newTerm = new Term { Id = termPage.SelectedTerm.Id, Title = termTitle.Text, StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
             Globals.updateTermInTermCollection(termPage.SelectedTerm, newTerm);
+            termPage.SetData(newTerm);
             await Navigation.PopModalAsync();
         }
 
