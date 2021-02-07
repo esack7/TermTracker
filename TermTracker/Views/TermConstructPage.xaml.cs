@@ -36,8 +36,8 @@ namespace TermTracker.Views
         {
             var termPage = TermPage;
             var newTerm = new Term { Id = termPage.SelectedTerm.Id, Title = termTitle.Text, StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
-            termPage.SetData(newTerm);
             Globals.updateTermInTermCollection(termPage.SelectedTerm, newTerm);
+            termPage.SetData(newTerm);
             await Navigation.PopModalAsync();
         }
 
