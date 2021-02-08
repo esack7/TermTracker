@@ -11,8 +11,8 @@ namespace TermTracker
     public static class Globals
     {
         public static ObservableCollection<Term> Terms = new ObservableCollection<Term>();
-        public static ObservableCollection<Course> Courses;
-        public static ObservableCollection<Assessment> Assessments;
+        public static ObservableCollection<Course> Courses = new ObservableCollection<Course>();
+        public static ObservableCollection<Assessment> Assessments = new ObservableCollection<Assessment>();
 
         public static void initializeTermsCollection()
         {
@@ -60,7 +60,7 @@ namespace TermTracker
 
         public static void initializeCoursesCollection(int termId)
         {
-            Courses = new ObservableCollection<Course>();
+            Courses.Clear();
             var database = new SqliteDataService();
             database.Initialize();
             var courses = database.GetCoursesByTermId(termId);
@@ -100,6 +100,16 @@ namespace TermTracker
             database.Initialize();
             database.DeleteCourse(course);
             Courses.Remove(course);
+            database.Close();
+        }
+
+        public static void initializeAssessmentCollection(int courseId)
+        {
+            Assessments.Clear();
+            var database = new SqliteDataService();
+            database.Initialize();
+            var courses = database.GetAssessmentsByCourseId(courseId);
+            courses.ForEach(assessment => Assessments.Add(assessment));
             database.Close();
         }
     }

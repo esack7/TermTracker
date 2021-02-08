@@ -40,7 +40,7 @@ namespace TermTracker.Views
 
         private async void CourseAssessments_Clicked(object sender, EventArgs e)
         {
-            
+            await Navigation.PushAsync(new AssessmentsPage(SelectedCourse));
         }
 
         private async void EditCourse_Clicked(object sender, EventArgs e)

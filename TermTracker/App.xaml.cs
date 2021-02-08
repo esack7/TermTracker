@@ -44,6 +44,14 @@ namespace TermTracker
                     Notes = "This is only a Test",
                     EnableNotifications = true
                 });
+                db.AddAssessment(new Assessment 
+                { 
+                    CourseId = 1, 
+                    Title = "Sample", 
+                    StartDate = DateTime.Now, 
+                    EndDate = DateTime.Now.AddDays(1), 
+                    Type = "Performance" 
+                });
             }
         }
 
