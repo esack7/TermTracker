@@ -28,9 +28,9 @@ namespace TermTracker.Views
 
         private async void Assessment_Clicked(object sender, EventArgs e)
         {
-            //var layout = (BindableObject)sender;
-            //var course = (Course)layout.BindingContext;
-            //await Navigation.PushAsync(new CoursePage(course));
+            var layout = (BindableObject)sender;
+            var assessment = (Assessment)layout.BindingContext;
+            await Navigation.PushAsync(new AssessmentPage(assessment));
         }
     }
 }

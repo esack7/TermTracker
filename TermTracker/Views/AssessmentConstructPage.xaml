@@ -31,13 +31,13 @@
                         Style="{StaticResource regularButton}"
                         Text="Save" 
                         Clicked="SaveButton_Clicked"
-                    />
+                />
                 <Button 
                         x:Name="SaveEditButton" 
                         Style="{StaticResource regularButton}"
                         Text="Save" 
                         Clicked="SaveEditButton_Clicked"
-                    />
+                />
                 <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
             </StackLayout>
         </StackLayout>

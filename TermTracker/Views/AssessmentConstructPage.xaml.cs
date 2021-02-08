@@ -13,11 +13,23 @@ namespace TermTracker.Views
     public partial class AssessmentConstructPage : ContentPage
     {
         private int CourseID;
+        private Assessment SelectedAssessment;
         public AssessmentConstructPage(int courseId)
         {
             InitializeComponent();
             CourseID = courseId;
             SaveEditButton.IsVisible = false;
+        }
+
+        public AssessmentConstructPage(Assessment assessment)
+        {
+            InitializeComponent();
+            SelectedAssessment = assessment;
+            assessmentTitle.Text = assessment.Title;
+            startDateSelected.Date = assessment.StartDate;
+            endDateSelected.Date = assessment.EndDate;
+            typePicker.SelectedItem = assessment.Type;
+            SaveButton.IsVisible = false;
         }
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
@@ -36,7 +48,7 @@ namespace TermTracker.Views
 
         private async void SaveEditButton_Clicked(object sender, EventArgs e)
         {
-            
+            await Navigation.PopModalAsync();
         }
 
         private async void CancelButton_Clicked(object sender, EventArgs e)
