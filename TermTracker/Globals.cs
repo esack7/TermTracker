@@ -112,5 +112,14 @@ namespace TermTracker
             courses.ForEach(assessment => Assessments.Add(assessment));
             database.Close();
         }
+
+        public static void addAssessmentToAssessmentCollection(Assessment assessment)
+        {
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.AddAssessment(assessment);
+            Assessments.Add(assessment);
+            database.Close();
+        }
     }
 }

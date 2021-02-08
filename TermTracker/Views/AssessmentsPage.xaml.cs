@@ -23,7 +23,7 @@ namespace TermTracker.Views
 
         private async void AddAssessment_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushModalAsync(new AssessmentConstructPage(SelectedTerm.Id));
+            await Navigation.PushModalAsync(new AssessmentConstructPage(SelectedCourse.Id));
         }
 
         private async void Assessment_Clicked(object sender, EventArgs e)
