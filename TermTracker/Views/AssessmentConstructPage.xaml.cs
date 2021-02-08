@@ -14,6 +14,7 @@ namespace TermTracker.Views
     {
         private int CourseID;
         private Assessment SelectedAssessment;
+        private AssessmentPage AssessmentPageRef;
         public AssessmentConstructPage(int courseId)
         {
             InitializeComponent();
@@ -21,9 +22,10 @@ namespace TermTracker.Views
             SaveEditButton.IsVisible = false;
         }
 
-        public AssessmentConstructPage(Assessment assessment)
+        public AssessmentConstructPage(AssessmentPage assessmentPage, Assessment assessment)
         {
             InitializeComponent();
+            AssessmentPageRef = assessmentPage;
             SelectedAssessment = assessment;
             assessmentTitle.Text = assessment.Title;
             startDateSelected.Date = assessment.StartDate;
@@ -48,6 +50,17 @@ namespace TermTracker.Views
 
         private async void SaveEditButton_Clicked(object sender, EventArgs e)
         {
+            var newAssessment = new Assessment
+            {
+                Id = SelectedAssessment.Id,
+                CourseId = CourseID,
+                Title = assessmentTitle.Text,
+                StartDate = startDateSelected.Date,
+                EndDate = endDateSelected.Date,
+                Type = typePicker.SelectedItem.ToString()
+            };
+            Globals.updateAssessmentInAssessmentCollection(SelectedAssessment, newAssessment);
+            AssessmentPageRef.SetData(newAssessment);
             await Navigation.PopModalAsync();
         }
 

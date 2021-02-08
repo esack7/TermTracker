@@ -21,7 +21,7 @@ namespace TermTracker.Views
             SetData(assessment);
         }
 
-        private void SetData(Assessment assessment)
+        public void SetData(Assessment assessment)
         {
             navTitle.Text = assessment.Title;
             AssessmentDateRange.Text = $"{assessment.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {assessment.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
@@ -30,7 +30,7 @@ namespace TermTracker.Views
 
         private async void EditAssessment_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AssessmentConstructPage(SelectedAssessment));
+            await Navigation.PushModalAsync(new AssessmentConstructPage(this, SelectedAssessment));
         }
 
         private async void DeleteButton_Clicked(object sender, EventArgs e)

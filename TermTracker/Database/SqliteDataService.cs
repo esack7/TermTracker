@@ -85,6 +85,11 @@ namespace TermTracker.Database
             return database.Query<Assessment>(query);
         }
 
+        public int UpdateAssessment(Assessment assessment)
+        {
+            return database.Update(assessment);
+        }
+
         public int DeleteAssessment(Assessment assessment)
         {
             return database.Delete(assessment);
