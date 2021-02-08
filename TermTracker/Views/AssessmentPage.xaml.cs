@@ -35,6 +35,7 @@ namespace TermTracker.Views
 
         private async void DeleteButton_Clicked(object sender, EventArgs e)
         {
+            Globals.deleteAssessmentFromAssessmentCollection(SelectedAssessment);
             await Navigation.PopAsync();
         }
     }

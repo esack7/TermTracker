@@ -18,5 +18,6 @@ namespace TermTracker.Database
         int DeleteCourse(Course course);
         void AddAssessment(Assessment assessment);
         List<Assessment> GetAssessmentsByCourseId(int courseId);
+        int DeleteAssessment(Assessment assessment);
     }
 }

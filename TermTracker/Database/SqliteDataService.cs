@@ -84,5 +84,10 @@ namespace TermTracker.Database
             string query = $"SELECT * FROM assessment WHERE assessment.CourseId={courseId}";
             return database.Query<Assessment>(query);
         }
+
+        public int DeleteAssessment(Assessment assessment)
+        {
+            return database.Delete(assessment);
+        }
     }
 }

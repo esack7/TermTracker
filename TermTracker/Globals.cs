@@ -121,5 +121,14 @@ namespace TermTracker
             Assessments.Add(assessment);
             database.Close();
         }
+
+        public static void deleteAssessmentFromAssessmentCollection(Assessment assessment)
+        {
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.DeleteAssessment(assessment);
+            Assessments.Remove(assessment);
+            database.Close();
+        }
     }
 }
