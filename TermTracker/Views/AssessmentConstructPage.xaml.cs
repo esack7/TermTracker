@@ -25,6 +25,7 @@ namespace TermTracker.Views
         public AssessmentConstructPage(AssessmentPage assessmentPage, Assessment assessment)
         {
             InitializeComponent();
+            CourseID = assessment.CourseId;
             AssessmentPageRef = assessmentPage;
             SelectedAssessment = assessment;
             assessmentTitle.Text = assessment.Title;
