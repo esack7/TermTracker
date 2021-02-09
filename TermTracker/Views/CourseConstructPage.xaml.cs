@@ -39,45 +39,118 @@ namespace TermTracker.Views
             SaveButton.IsVisible = false;
         }
 
+        private bool isValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return !(addr.Address == email);
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            var newCourse = new Course
+            try
             {
-                TermId = TermID,
-                Title = courseTitle.Text,
-                StartDate = startDateSelected.Date,
-                EndDate = endDateSelected.Date,
-                Status = statusPicker.SelectedItem.ToString(),
-                InstructorName = instructorName.Text,
-                InstructorPhone = instructorPhone.Text,
-                InstructorEmail = instructorEmail.Text,
-                Notes = courseNotes.Text,
-                EnableNotifications = notificationSwitch.IsToggled
-            };
-            Globals.addCourseToCourseCollection(newCourse);
-            await Navigation.PopModalAsync();
+                bool emailValid = isValidEmail(instructorEmail.Text);
+                if (courseTitle.Text == null || courseTitle.Text == "")
+                {
+                    throw new Exception("You must have Course Title");
+                }
+
+                if(statusPicker.SelectedItem == null)
+                {
+                    throw new Exception("You must pick a course status");
+                }
+
+                if (
+                        instructorName.Text == null || instructorName.Text == "" ||
+                        instructorPhone.Text == null || instructorPhone.Text == "" ||
+                        instructorEmail.Text == null || instructorEmail.Text == ""
+                    )
+                {
+                    throw new Exception("You must provide all of the course instructor's info (Name, Phone, Email)");
+                }
+
+                if (emailValid)
+                {
+                    throw new Exception("You must provide a valid email");
+                }
+
+                if (courseNotes.Text == null)
+                {
+                    courseNotes.Text = "";
+                }
+
+                var newCourse = new Course
+                {
+                    TermId = TermID,
+                    Title = courseTitle.Text,
+                    StartDate = startDateSelected.Date,
+                    EndDate = endDateSelected.Date,
+                    Status = statusPicker.SelectedItem.ToString(),
+                    InstructorName = instructorName.Text,
+                    InstructorPhone = instructorPhone.Text,
+                    InstructorEmail = instructorEmail.Text,
+                    Notes = courseNotes.Text,
+                    EnableNotifications = notificationSwitch.IsToggled
+                };
+                Globals.addCourseToCourseCollection(newCourse);
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void SaveEditButton_Clicked(object sender, EventArgs e)
         {
-            var coursePage = CoursePage;
-            var newCourse = new Course
+            try
             {
-                Id = coursePage.SelectedCourse.Id,
-                TermId = TermID,
-                Title = courseTitle.Text,
-                StartDate = startDateSelected.Date,
-                EndDate = endDateSelected.Date,
-                Status = statusPicker.SelectedItem.ToString(),
-                InstructorName = instructorName.Text,
-                InstructorPhone = instructorPhone.Text,
-                InstructorEmail = instructorEmail.Text,
-                Notes = courseNotes.Text,
-                EnableNotifications = notificationSwitch.IsToggled
-            };
-            Globals.updateCourseInCourseCollection(coursePage.SelectedCourse, newCourse);
-            coursePage.SetData(newCourse);
-            await Navigation.PopModalAsync();
+                bool emailValid = isValidEmail(instructorEmail.Text);
+                if (courseTitle.Text == "")
+                {
+                    throw new Exception("You must have Course Title");
+                }
+
+                if (instructorName.Text == "" || instructorPhone.Text == "" || instructorEmail.Text == "")
+                {
+                    throw new Exception("You must provide all of the course instructor's info (Name, Phone, Email)");
+                }
+
+                if (emailValid)
+                {
+                    throw new Exception("You must provide a valid email");
+                }
+
+                var coursePage = CoursePage;
+                var newCourse = new Course
+                {
+                    Id = coursePage.SelectedCourse.Id,
+                    TermId = TermID,
+                    Title = courseTitle.Text,
+                    StartDate = startDateSelected.Date,
+                    EndDate = endDateSelected.Date,
+                    Status = statusPicker.SelectedItem.ToString(),
+                    InstructorName = instructorName.Text,
+                    InstructorPhone = instructorPhone.Text,
+                    InstructorEmail = instructorEmail.Text,
+                    Notes = courseNotes.Text,
+                    EnableNotifications = notificationSwitch.IsToggled
+                };
+                Globals.updateCourseInCourseCollection(coursePage.SelectedCourse, newCourse);
+                coursePage.SetData(newCourse);
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void CancelButton_Clicked(object sender, EventArgs e)

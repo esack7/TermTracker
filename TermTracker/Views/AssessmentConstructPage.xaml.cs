@@ -37,32 +37,61 @@ namespace TermTracker.Views
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            var newAssessment = new Assessment
+            try
             {
-                CourseId = CourseID,
-                Title = assessmentTitle.Text,
-                StartDate = startDateSelected.Date,
-                EndDate = endDateSelected.Date,
-                Type = typePicker.SelectedItem.ToString()
-            };
-            Globals.addAssessmentToAssessmentCollection(newAssessment);
-            await Navigation.PopModalAsync();
+                if (assessmentTitle.Text == null || assessmentTitle.Text == "")
+                {
+                    throw new Exception("You must have an Assessment Title");
+                }
+
+                if (typePicker.SelectedItem == null)
+                {
+                    throw new Exception("You must pick an Assessment Type");
+                }
+
+                var newAssessment = new Assessment
+                {
+                    CourseId = CourseID,
+                    Title = assessmentTitle.Text,
+                    StartDate = startDateSelected.Date,
+                    EndDate = endDateSelected.Date,
+                    Type = typePicker.SelectedItem.ToString()
+                };
+                Globals.addAssessmentToAssessmentCollection(newAssessment);
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void SaveEditButton_Clicked(object sender, EventArgs e)
         {
-            var newAssessment = new Assessment
+            try
             {
-                Id = SelectedAssessment.Id,
-                CourseId = CourseID,
-                Title = assessmentTitle.Text,
-                StartDate = startDateSelected.Date,
-                EndDate = endDateSelected.Date,
-                Type = typePicker.SelectedItem.ToString()
-            };
-            Globals.updateAssessmentInAssessmentCollection(SelectedAssessment, newAssessment);
-            AssessmentPageRef.SetData(newAssessment);
-            await Navigation.PopModalAsync();
+                if (assessmentTitle.Text == "")
+                {
+                    throw new Exception("You must have an Assessment Title");
+                }
+
+                var newAssessment = new Assessment
+                {
+                    Id = SelectedAssessment.Id,
+                    CourseId = CourseID,
+                    Title = assessmentTitle.Text,
+                    StartDate = startDateSelected.Date,
+                    EndDate = endDateSelected.Date,
+                    Type = typePicker.SelectedItem.ToString()
+                };
+                Globals.updateAssessmentInAssessmentCollection(SelectedAssessment, newAssessment);
+                AssessmentPageRef.SetData(newAssessment);
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void CancelButton_Clicked(object sender, EventArgs e)
