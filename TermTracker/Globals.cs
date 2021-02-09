@@ -112,5 +112,40 @@ namespace TermTracker
             courses.ForEach(assessment => Assessments.Add(assessment));
             database.Close();
         }
+
+        public static void addAssessmentToAssessmentCollection(Assessment assessment)
+        {
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.AddAssessment(assessment);
+            Assessments.Add(assessment);
+            database.Close();
+        }
+
+        public static void updateAssessmentInAssessmentCollection(Assessment oldAssessment, Assessment newAssessment)
+        {
+            var assessmentList = Assessments.ToList();
+            Assessments.Clear();
+
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.UpdateAssessment(newAssessment);
+
+            int indexFound = assessmentList.IndexOf(oldAssessment);
+            assessmentList.RemoveAt(indexFound);
+            assessmentList.Insert(indexFound, newAssessment);
+            assessmentList.ForEach(assessment => Assessments.Add(assessment));
+
+            database.Close();
+        }
+
+        public static void deleteAssessmentFromAssessmentCollection(Assessment assessment)
+        {
+            var database = new SqliteDataService();
+            database.Initialize();
+            database.DeleteAssessment(assessment);
+            Assessments.Remove(assessment);
+            database.Close();
+        }
     }
 }
