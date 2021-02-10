@@ -21,6 +21,10 @@
                     <Label Text="Type" HorizontalOptions="StartAndExpand" Margin="20,0,0,0" FontAttributes="Bold"/>
                     <Label x:Name="TypeSelection" HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Notifications Enabled:" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                    <Label x:Name="notificationsEnabled" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
             </StackLayout>
             <StackLayout VerticalOptions="End">
                 <Button 

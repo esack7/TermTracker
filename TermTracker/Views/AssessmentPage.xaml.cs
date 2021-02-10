@@ -26,6 +26,7 @@ namespace TermTracker.Views
             navTitle.Text = assessment.Title;
             AssessmentDateRange.Text = $"{assessment.StartDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)} - {assessment.EndDate.ToString("MM-dd-yyyy", DateTimeFormatInfo.InvariantInfo)}";
             TypeSelection.Text = assessment.Type;
+            notificationsEnabled.Text = assessment.EnableNotifications ? "ON" : "OFF";
         }
 
         private async void EditAssessment_Clicked(object sender, EventArgs e)

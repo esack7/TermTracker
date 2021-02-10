@@ -51,7 +51,8 @@ namespace TermTracker
                     Title = "Sample", 
                     StartDate = DateTime.Now, 
                     EndDate = DateTime.Now.AddDays(1), 
-                    Type = "Performance" 
+                    Type = "Performance" ,
+                    EnableNotifications = true
                 });
             }
         }

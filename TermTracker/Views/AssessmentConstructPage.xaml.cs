@@ -12,7 +12,6 @@ namespace TermTracker.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssessmentConstructPage : ContentPage
     {
-        //TODO: add notifications switch, must change class also.
         private int CourseID;
         private Assessment SelectedAssessment;
         private AssessmentPage AssessmentPageRef;
@@ -33,6 +32,7 @@ namespace TermTracker.Views
             startDateSelected.Date = assessment.StartDate;
             endDateSelected.Date = assessment.EndDate;
             typePicker.SelectedItem = assessment.Type;
+            notificationSwitch.IsToggled = assessment.EnableNotifications;
             SaveButton.IsVisible = false;
         }
 
@@ -60,7 +60,8 @@ namespace TermTracker.Views
                     Title = assessmentTitle.Text,
                     StartDate = startDateSelected.Date,
                     EndDate = endDateSelected.Date,
-                    Type = typePicker.SelectedItem.ToString()
+                    Type = typePicker.SelectedItem.ToString(),
+                    EnableNotifications = notificationSwitch.IsToggled
                 };
                 Globals.addAssessmentToAssessmentCollection(newAssessment);
                 await Navigation.PopModalAsync();
@@ -87,7 +88,8 @@ namespace TermTracker.Views
                     Title = assessmentTitle.Text,
                     StartDate = startDateSelected.Date,
                     EndDate = endDateSelected.Date,
-                    Type = typePicker.SelectedItem.ToString()
+                    Type = typePicker.SelectedItem.ToString(),
+                    EnableNotifications = notificationSwitch.IsToggled
                 };
                 Globals.updateAssessmentInAssessmentCollection(SelectedAssessment, newAssessment);
                 AssessmentPageRef.SetData(newAssessment);
