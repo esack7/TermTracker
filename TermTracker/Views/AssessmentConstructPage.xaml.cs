@@ -12,6 +12,7 @@ namespace TermTracker.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssessmentConstructPage : ContentPage
     {
+        //TODO: add notifications switch, must change class also.
         private int CourseID;
         private Assessment SelectedAssessment;
         private AssessmentPage AssessmentPageRef;
@@ -44,10 +45,14 @@ namespace TermTracker.Views
                     throw new Exception("You must have an Assessment Title");
                 }
 
+                //TODO: validate that start date is not after end date
+
                 if (typePicker.SelectedItem == null)
                 {
                     throw new Exception("You must pick an Assessment Type");
                 }
+
+                //TODO: Add validation that assessment of same type cannot be added when one of that type already exists for the course.
 
                 var newAssessment = new Assessment
                 {

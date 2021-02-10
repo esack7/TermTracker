@@ -24,6 +24,13 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
+                <StackLayout Orientation="Horizontal" Margin="0,20,0,20">
+                    <Label Text="Enable Notifications" HorizontalOptions="StartAndExpand" Margin="20,0,0,0"/>
+                    <Switch 
+                            x:Name="notificationSwitch"
+                            HorizontalOptions="CenterAndExpand" 
+                            Scale="1.2"/>
+                </StackLayout>
             </StackLayout>
             <StackLayout VerticalOptions="End">
                 <Button 

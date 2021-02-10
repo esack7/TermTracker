@@ -33,6 +33,9 @@ namespace TermTracker.Views
                 {
                     throw new Exception("You must have Term Title");
                 }
+
+                //TODO: validate that start date is not after end date
+
                 var newTerm = new Term { Title = termTitle.Text, StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
                 Globals.addTermToTermCollection(newTerm);
                 await Navigation.PopModalAsync();

@@ -23,6 +23,7 @@ namespace TermTracker.Views
 
         private async void AddAssessment_Clicked(object sender, EventArgs e)
         {
+            //TODO: Add validation that only two courses can be added
             await Navigation.PushModalAsync(new AssessmentConstructPage(SelectedCourse.Id));
         }
 

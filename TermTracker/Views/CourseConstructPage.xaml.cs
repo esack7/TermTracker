@@ -39,7 +39,7 @@ namespace TermTracker.Views
             SaveButton.IsVisible = false;
         }
 
-        private bool isValidEmail(string email)
+        private bool isInvalidEmail(string email)
         {
             try
             {
@@ -56,13 +56,15 @@ namespace TermTracker.Views
         {
             try
             {
-                bool emailValid = isValidEmail(instructorEmail.Text);
+                bool emailInvalid = isInvalidEmail(instructorEmail.Text);
                 if (courseTitle.Text == null || courseTitle.Text == "")
                 {
                     throw new Exception("You must have Course Title");
                 }
 
-                if(statusPicker.SelectedItem == null)
+                //TODO: validate that start date is not after end date
+
+                if (statusPicker.SelectedItem == null)
                 {
                     throw new Exception("You must pick a course status");
                 }
@@ -76,7 +78,7 @@ namespace TermTracker.Views
                     throw new Exception("You must provide all of the course instructor's info (Name, Phone, Email)");
                 }
 
-                if (emailValid)
+                if (emailInvalid)
                 {
                     throw new Exception("You must provide a valid email");
                 }
@@ -112,7 +114,7 @@ namespace TermTracker.Views
         {
             try
             {
-                bool emailValid = isValidEmail(instructorEmail.Text);
+                bool emailInvalid = isInvalidEmail(instructorEmail.Text);
                 if (courseTitle.Text == "")
                 {
                     throw new Exception("You must have Course Title");
@@ -123,7 +125,7 @@ namespace TermTracker.Views
                     throw new Exception("You must provide all of the course instructor's info (Name, Phone, Email)");
                 }
 
-                if (emailValid)
+                if (emailInvalid)
                 {
                     throw new Exception("You must provide a valid email");
                 }
