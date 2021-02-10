@@ -25,6 +25,7 @@ namespace TermTracker
             var db = new SqliteDataService();
             bool addData = db.Initialize();
 
+            //TODO: Update initialized data to what is required in part C of requirements and B6 of rubric.
             if(addData)
             {
                 var thisMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
