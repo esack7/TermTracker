@@ -10,6 +10,8 @@ namespace TermTracker.Database
         void Close();
         void AddTerm(Term term);
         List<Term> GetAllTerms();
+        List<Course> GetAllCourses();
+        List<Assessment> GetAllAssessments();
         int UpdateTerm(Term term);
         int DeleteTerm(Term term);
         void AddCourse(Course course);

@@ -38,6 +38,16 @@ namespace TermTracker.Database
             return database.Table<Term>().ToList();
         }
 
+        public List<Course> GetAllCourses()
+        {
+            return database.Table<Course>().ToList();
+        }
+
+        public List<Assessment> GetAllAssessments()
+        {
+            return database.Table<Assessment>().ToList();
+        }
+
         public int UpdateTerm(Term term)
         {
             return database.Update(term);

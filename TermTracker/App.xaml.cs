@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.LocalNotifications;
+using System;
 using System.Collections.Generic;
 using TermTracker.Database;
 using TermTracker.Models;
@@ -13,6 +14,7 @@ namespace TermTracker
         {
             InitializeData();
             InitializeComponent();
+            Globals.startupNotifications();
 
             MainPage = new NavigationPage(new TermsMainPage())
             {
