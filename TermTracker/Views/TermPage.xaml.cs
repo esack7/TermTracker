@@ -26,8 +26,19 @@ namespace TermTracker.Views
 
         private async void AddCourse_Clicked(object sender, EventArgs e)
         {
-            //TODO: Add validation that only 6 courses can be added to this term
-            await Navigation.PushModalAsync(new CourseConstructPage(SelectedTerm.Id));
+            try
+            {
+                if(Globals.Courses.Count >= 6)
+                {
+                    throw new Exception("You cannot add more than 6 courses to a term");
+                }
+                
+                await Navigation.PushModalAsync(new CourseConstructPage(SelectedTerm.Id));
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void EditTerm_Clicked(object sender, EventArgs e)
