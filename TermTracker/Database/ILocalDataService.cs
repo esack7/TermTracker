@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using TermTracker.Models;
 
 namespace TermTracker.Database

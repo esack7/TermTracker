@@ -1,6 +1,4 @@
-﻿using Plugin.LocalNotifications;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using TermTracker.Database;
 using TermTracker.Models;
 using TermTracker.Views;
@@ -27,7 +25,7 @@ namespace TermTracker
             var db = new SqliteDataService();
             bool addData = db.Initialize();
 
-            if(addData)
+            if (addData)
             {
                 var thisMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 db.AddTerm(new Term { Title = "Term 1", StartDate = thisMonth, EndDate = thisMonth.AddMonths(4).AddDays(-1) });
@@ -44,13 +42,13 @@ namespace TermTracker
                     Notes = "This is only a Test",
                     EnableNotifications = true
                 });
-                db.AddAssessment(new Assessment 
-                { 
-                    CourseId = 1, 
-                    Title = "Sample", 
-                    StartDate = thisMonth.AddMonths(1).AddDays(-1), 
-                    EndDate = thisMonth.AddMonths(1), 
-                    Type = "Performance" ,
+                db.AddAssessment(new Assessment
+                {
+                    CourseId = 1,
+                    Title = "Sample",
+                    StartDate = thisMonth.AddMonths(1).AddDays(-1),
+                    EndDate = thisMonth.AddMonths(1),
+                    Type = "Performance",
                     EnableNotifications = true
                 });
                 db.AddAssessment(new Assessment
@@ -67,7 +65,7 @@ namespace TermTracker
 
         protected override void OnStart()
         {
-            
+
         }
 
         protected override void OnSleep()

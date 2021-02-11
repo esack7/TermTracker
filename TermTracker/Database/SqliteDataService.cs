@@ -6,7 +6,7 @@ using TermTracker.Models;
 
 namespace TermTracker.Database
 {
-    public class SqliteDataService: ILocalDataService
+    public class SqliteDataService : ILocalDataService
     {
         private SQLiteConnection database;
         public bool Initialize()

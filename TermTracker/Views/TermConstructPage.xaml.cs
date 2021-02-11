@@ -29,7 +29,7 @@ namespace TermTracker.Views
         {
             try
             {
-                if(termTitle.Text == null || termTitle.Text == "")
+                if (termTitle.Text == null || termTitle.Text == "")
                 {
                     throw new Exception("You must have Term Title");
                 }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TermTracker.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -55,7 +52,7 @@ namespace TermTracker.Views
                     throw new Exception("You must pick an Assessment Type");
                 }
 
-                if(Globals.Assessments[0].Type == typePicker.SelectedItem.ToString())
+                if (Globals.Assessments[0].Type == typePicker.SelectedItem.ToString())
                 {
                     throw new Exception("You cannot have two assessments of the same type");
                 }

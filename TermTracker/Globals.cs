@@ -1,9 +1,7 @@
 ﻿using Plugin.LocalNotifications;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using TermTracker.Database;
 using TermTracker.Models;
 
@@ -22,9 +20,9 @@ namespace TermTracker
             database.Initialize();
             var courses = database.GetAllCourses();
             var assessments = database.GetAllAssessments();
-            courses.ForEach(course => 
-            { 
-                if(course.EnableNotifications && new DateTime(course.StartDate.Year, course.StartDate.Month, course.StartDate.Day) == today)
+            courses.ForEach(course =>
+            {
+                if (course.EnableNotifications && new DateTime(course.StartDate.Year, course.StartDate.Month, course.StartDate.Day) == today)
                 {
                     CrossLocalNotifications.Current.Show("Course Start", $"{course.Title} is starting today");
                 }
@@ -35,7 +33,7 @@ namespace TermTracker
             });
             assessments.ForEach(test =>
             {
-                if(test.EnableNotifications && new DateTime(test.StartDate.Year, test.StartDate.Month, test.StartDate.Day) == today)
+                if (test.EnableNotifications && new DateTime(test.StartDate.Year, test.StartDate.Month, test.StartDate.Day) == today)
                 {
                     CrossLocalNotifications.Current.Show("Assessment Start", $"{test.Title} due date start is today");
                 }

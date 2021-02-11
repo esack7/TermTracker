@@ -1,5 +1,4 @@
-﻿using Plugin.LocalNotifications;
-using System;
+﻿using System;
 using TermTracker.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

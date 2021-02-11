@@ -28,11 +28,11 @@ namespace TermTracker.Views
         {
             try
             {
-                if(Globals.Courses.Count >= 6)
+                if (Globals.Courses.Count >= 6)
                 {
                     throw new Exception("You cannot add more than 6 courses to a term");
                 }
-                
+
                 await Navigation.PushModalAsync(new CourseConstructPage(SelectedTerm.Id));
             }
             catch (Exception error)
