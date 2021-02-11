@@ -55,7 +55,10 @@ namespace TermTracker.Views
                     throw new Exception("You must pick an Assessment Type");
                 }
 
-                //TODO: Add validation that assessment of same type cannot be added when one of that type already exists for the course.
+                if(Globals.Assessments[0].Type == typePicker.SelectedItem.ToString())
+                {
+                    throw new Exception("You cannot have two assessments of the same type");
+                }
 
                 var newAssessment = new Assessment
                 {
@@ -87,6 +90,11 @@ namespace TermTracker.Views
                 if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
                 {
                     throw new Exception("The start date cannot be after the end date");
+                }
+
+                if (Globals.Assessments.Where(test => test.Id != SelectedAssessment.Id).First().Type == typePicker.SelectedItem.ToString())
+                {
+                    throw new Exception("You cannot have two assessments of the same type");
                 }
 
                 var newAssessment = new Assessment
