@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TermTracker.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -32,37 +29,89 @@ namespace TermTracker.Views
             startDateSelected.Date = assessment.StartDate;
             endDateSelected.Date = assessment.EndDate;
             typePicker.SelectedItem = assessment.Type;
+            notificationSwitch.IsToggled = assessment.EnableNotifications;
             SaveButton.IsVisible = false;
         }
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            var newAssessment = new Assessment
+            try
             {
-                CourseId = CourseID,
-                Title = assessmentTitle.Text,
-                StartDate = startDateSelected.Date,
-                EndDate = endDateSelected.Date,
-                Type = typePicker.SelectedItem.ToString()
-            };
-            Globals.addAssessmentToAssessmentCollection(newAssessment);
-            await Navigation.PopModalAsync();
+                if (assessmentTitle.Text == null || assessmentTitle.Text == "")
+                {
+                    throw new Exception("You must have an Assessment Title");
+                }
+
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
+                }
+
+                if (typePicker.SelectedItem == null)
+                {
+                    throw new Exception("You must pick an Assessment Type");
+                }
+
+                if (Globals.Assessments[0].Type == typePicker.SelectedItem.ToString())
+                {
+                    throw new Exception("You cannot have two assessments of the same type");
+                }
+
+                var newAssessment = new Assessment
+                {
+                    CourseId = CourseID,
+                    Title = assessmentTitle.Text,
+                    StartDate = startDateSelected.Date,
+                    EndDate = endDateSelected.Date,
+                    Type = typePicker.SelectedItem.ToString(),
+                    EnableNotifications = notificationSwitch.IsToggled
+                };
+                Globals.addAssessmentToAssessmentCollection(newAssessment);
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void SaveEditButton_Clicked(object sender, EventArgs e)
         {
-            var newAssessment = new Assessment
+            try
             {
-                Id = SelectedAssessment.Id,
-                CourseId = CourseID,
-                Title = assessmentTitle.Text,
-                StartDate = startDateSelected.Date,
-                EndDate = endDateSelected.Date,
-                Type = typePicker.SelectedItem.ToString()
-            };
-            Globals.updateAssessmentInAssessmentCollection(SelectedAssessment, newAssessment);
-            AssessmentPageRef.SetData(newAssessment);
-            await Navigation.PopModalAsync();
+                if (assessmentTitle.Text == "")
+                {
+                    throw new Exception("You must have an Assessment Title");
+                }
+
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
+                }
+
+                if (Globals.Assessments.Where(test => test.Id != SelectedAssessment.Id).First().Type == typePicker.SelectedItem.ToString())
+                {
+                    throw new Exception("You cannot have two assessments of the same type");
+                }
+
+                var newAssessment = new Assessment
+                {
+                    Id = SelectedAssessment.Id,
+                    CourseId = CourseID,
+                    Title = assessmentTitle.Text,
+                    StartDate = startDateSelected.Date,
+                    EndDate = endDateSelected.Date,
+                    Type = typePicker.SelectedItem.ToString(),
+                    EnableNotifications = notificationSwitch.IsToggled
+                };
+                Globals.updateAssessmentInAssessmentCollection(SelectedAssessment, newAssessment);
+                AssessmentPageRef.SetData(newAssessment);
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void CancelButton_Clicked(object sender, EventArgs e)

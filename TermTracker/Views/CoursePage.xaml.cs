@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TermTracker.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -35,7 +32,7 @@ namespace TermTracker.Views
 
         private async void ShareNotes_Clicked(object sender, EventArgs e)
         {
-
+            await Share.RequestAsync($"Notes from {navTitle.Text}:\n{notes.Text}");
         }
 
         private async void CourseAssessments_Clicked(object sender, EventArgs e)

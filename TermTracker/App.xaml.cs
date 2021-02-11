@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using TermTracker.Database;
 using TermTracker.Models;
 using TermTracker.Views;
@@ -13,6 +12,7 @@ namespace TermTracker
         {
             InitializeData();
             InitializeComponent();
+            Globals.startupNotifications();
 
             MainPage = new NavigationPage(new TermsMainPage())
             {
@@ -25,39 +25,47 @@ namespace TermTracker
             var db = new SqliteDataService();
             bool addData = db.Initialize();
 
-            if(addData)
+            if (addData)
             {
                 var thisMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 db.AddTerm(new Term { Title = "Term 1", StartDate = thisMonth, EndDate = thisMonth.AddMonths(4).AddDays(-1) });
-                db.AddTerm(new Term { Title = "Term 2", StartDate = thisMonth.AddMonths(4), EndDate = thisMonth.AddMonths(8).AddDays(-1) });
-                db.AddTerm(new Term { Title = "Term 3", StartDate = thisMonth.AddMonths(8), EndDate = thisMonth.AddMonths(12).AddDays(-1) });
                 db.AddCourse(new Course
                 {
                     TermId = 1,
                     Title = "Sample Course",
                     StartDate = thisMonth,
                     EndDate = thisMonth.AddMonths(1).AddDays(-1),
-                    Status = "Dropped",
-                    InstructorName = "Bob Roberts",
-                    InstructorPhone = "5557399999",
-                    InstructorEmail = "bobby.bob@wgu.edu",
+                    Status = "In Progress",
+                    InstructorName = "Isaac Heist",
+                    InstructorPhone = "555-444-3333", //change before submitting
+                    InstructorEmail = "sample@wgu.edu", //change before submitting
                     Notes = "This is only a Test",
                     EnableNotifications = true
                 });
-                db.AddAssessment(new Assessment 
-                { 
-                    CourseId = 1, 
-                    Title = "Sample", 
-                    StartDate = DateTime.Now, 
-                    EndDate = DateTime.Now.AddDays(1), 
-                    Type = "Performance" 
+                db.AddAssessment(new Assessment
+                {
+                    CourseId = 1,
+                    Title = "Sample",
+                    StartDate = thisMonth.AddMonths(1).AddDays(-1),
+                    EndDate = thisMonth.AddMonths(1),
+                    Type = "Performance",
+                    EnableNotifications = true
+                });
+                db.AddAssessment(new Assessment
+                {
+                    CourseId = 1,
+                    Title = "Sample 2",
+                    StartDate = thisMonth.AddMonths(2).AddDays(-1),
+                    EndDate = thisMonth.AddMonths(2),
+                    Type = "Objective",
+                    EnableNotifications = true
                 });
             }
         }
 
         protected override void OnStart()
         {
-            
+
         }
 
         protected override void OnSleep()

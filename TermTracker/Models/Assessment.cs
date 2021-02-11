@@ -1,7 +1,5 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TermTracker.Models
 {
@@ -14,5 +12,6 @@ namespace TermTracker.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Type { get; set; }
+        public bool EnableNotifications { get; set; }
     }
 }

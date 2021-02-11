@@ -6,7 +6,7 @@ using TermTracker.Models;
 
 namespace TermTracker.Database
 {
-    public class SqliteDataService: ILocalDataService
+    public class SqliteDataService : ILocalDataService
     {
         private SQLiteConnection database;
         public bool Initialize()
@@ -36,6 +36,16 @@ namespace TermTracker.Database
         public List<Term> GetAllTerms()
         {
             return database.Table<Term>().ToList();
+        }
+
+        public List<Course> GetAllCourses()
+        {
+            return database.Table<Course>().ToList();
+        }
+
+        public List<Assessment> GetAllAssessments()
+        {
+            return database.Table<Assessment>().ToList();
         }
 
         public int UpdateTerm(Term term)

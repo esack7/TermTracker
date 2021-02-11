@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Plugin.LocalNotifications;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using TermTracker.Database;
 using TermTracker.Models;
 
@@ -13,6 +12,38 @@ namespace TermTracker
         public static ObservableCollection<Term> Terms = new ObservableCollection<Term>();
         public static ObservableCollection<Course> Courses = new ObservableCollection<Course>();
         public static ObservableCollection<Assessment> Assessments = new ObservableCollection<Assessment>();
+
+        public static void startupNotifications()
+        {
+            var today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            var database = new SqliteDataService();
+            database.Initialize();
+            var courses = database.GetAllCourses();
+            var assessments = database.GetAllAssessments();
+            courses.ForEach(course =>
+            {
+                if (course.EnableNotifications && new DateTime(course.StartDate.Year, course.StartDate.Month, course.StartDate.Day) == today)
+                {
+                    CrossLocalNotifications.Current.Show("Course Start", $"{course.Title} is starting today");
+                }
+                if (course.EnableNotifications && new DateTime(course.EndDate.Year, course.EndDate.Month, course.EndDate.Day) == today)
+                {
+                    CrossLocalNotifications.Current.Show("Course End", $"{course.Title} is ending today");
+                }
+            });
+            assessments.ForEach(test =>
+            {
+                if (test.EnableNotifications && new DateTime(test.StartDate.Year, test.StartDate.Month, test.StartDate.Day) == today)
+                {
+                    CrossLocalNotifications.Current.Show("Assessment Start", $"{test.Title} due date start is today");
+                }
+                if (test.EnableNotifications && new DateTime(test.EndDate.Year, test.EndDate.Month, test.EndDate.Day) == today)
+                {
+                    CrossLocalNotifications.Current.Show("Assessment End", $"{test.Title} due date end is today");
+                }
+            });
+            database.Close();
+        }
 
         public static void initializeTermsCollection()
         {

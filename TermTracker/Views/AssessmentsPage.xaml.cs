@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TermTracker.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,7 +19,18 @@ namespace TermTracker.Views
 
         private async void AddAssessment_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AssessmentConstructPage(SelectedCourse.Id));
+            try
+            {
+                if (Globals.Assessments.Count >= 2)
+                {
+                    throw new Exception("You cannot add more than 2 assessments to a course");
+                }
+                await Navigation.PushModalAsync(new AssessmentConstructPage(SelectedCourse.Id));
+            }
+            catch (Exception error)
+            {
+                await DisplayAlert("Alert", $"{error.Message}", "OK");
+            }
         }
 
         private async void Assessment_Clicked(object sender, EventArgs e)
