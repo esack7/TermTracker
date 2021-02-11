@@ -34,7 +34,10 @@ namespace TermTracker.Views
                     throw new Exception("You must have Term Title");
                 }
 
-                //TODO: validate that start date is not after end date
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
+                }
 
                 var newTerm = new Term { Title = termTitle.Text, StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
                 Globals.addTermToTermCollection(newTerm);
@@ -54,6 +57,12 @@ namespace TermTracker.Views
                 {
                     throw new Exception("You must have Term Title");
                 }
+
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
+                }
+
                 var termPage = TermPage;
                 var newTerm = new Term { Id = termPage.SelectedTerm.Id, Title = termTitle.Text, StartDate = startDateSelected.Date, EndDate = endDateSelected.Date };
                 Globals.updateTermInTermCollection(termPage.SelectedTerm, newTerm);

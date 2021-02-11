@@ -62,7 +62,10 @@ namespace TermTracker.Views
                     throw new Exception("You must have Course Title");
                 }
 
-                //TODO: validate that start date is not after end date
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
+                }
 
                 if (statusPicker.SelectedItem == null)
                 {
@@ -118,6 +121,11 @@ namespace TermTracker.Views
                 if (courseTitle.Text == "")
                 {
                     throw new Exception("You must have Course Title");
+                }
+
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
                 }
 
                 if (instructorName.Text == "" || instructorPhone.Text == "" || instructorEmail.Text == "")

@@ -45,7 +45,10 @@ namespace TermTracker.Views
                     throw new Exception("You must have an Assessment Title");
                 }
 
-                //TODO: validate that start date is not after end date
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
+                }
 
                 if (typePicker.SelectedItem == null)
                 {
@@ -79,6 +82,11 @@ namespace TermTracker.Views
                 if (assessmentTitle.Text == "")
                 {
                     throw new Exception("You must have an Assessment Title");
+                }
+
+                if (new DateTime(startDateSelected.Date.Year, startDateSelected.Date.Month, startDateSelected.Date.Day) > new DateTime(endDateSelected.Date.Year, endDateSelected.Date.Month, endDateSelected.Date.Day))
+                {
+                    throw new Exception("The start date cannot be after the end date");
                 }
 
                 var newAssessment = new Assessment
