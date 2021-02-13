@@ -51,10 +51,13 @@ namespace TermTracker.Views
                 {
                     throw new Exception("You must pick an Assessment Type");
                 }
-
-                if (Globals.Assessments[0].Type == typePicker.SelectedItem.ToString())
+                
+                if(Globals.Assessments.Any())
                 {
-                    throw new Exception("You cannot have two assessments of the same type");
+                    if (Globals.Assessments.First().Type == typePicker.SelectedItem.ToString())
+                    {
+                        throw new Exception("You cannot have two assessments of the same type");
+                    }
                 }
 
                 var newAssessment = new Assessment
